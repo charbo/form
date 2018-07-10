@@ -33,6 +33,17 @@ export class LineComponent {
           }
            */
         });
+
+
+
+        dragulaService.drop.subscribe((value) => {
+          console.log(`drop: ${value[0]}`);
+          console.log(value[1]);
+          var div = value[1];
+          
+        });
       }
+
+      
 
 }

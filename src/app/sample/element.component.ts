@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { DragulaService } from 'ng2-dragula';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'form-element',
@@ -8,10 +7,9 @@ import { DragulaService } from 'ng2-dragula';
 })
 
 export class ElementComponent {
-    constructor(private dragulaService: DragulaService) {
-        dragulaService.setOptions('element-bag', {
-          copy: true
-        });
-      }
+
+  @Input() text: string;
+
+    
   
 }
