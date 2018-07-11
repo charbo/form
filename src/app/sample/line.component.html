@@ -1,12 +1,16 @@
-<div class='wrapper'>
-    <div class='container' [dragula]='"main-bag"' id="left">
-        <form-element text="toto"></form-element>
-        <form-element text="tata"></form-element>
-        <form-element text="titi"></form-element>
-    </div>
-    <div class='container-left row' [dragula]='"main-bag"' id="right">
-        yeah
-    </div>
+<div class='container-fluid'>
+  <div class='row'>
+      <div class='col' [dragula]='"main-bag"' id="left">
+
+          <form-element *ngFor="let dragable of dragables" [dragable]="dragable" [attr.data-id]="dragable.id"></form-element>
+
+      </div>
+      <div class='col'>
+        <div class="container-fluid">
+          <div class="drop-row row" [dragula]='"main-bag"' id="right"></div>
+        </div>
+      </div>
+  </div>
 </div>
 
 

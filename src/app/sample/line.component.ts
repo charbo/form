@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
+import { DRAGABLES } from '../service/mock-dragables';
 
 @Component({
   selector: 'line',
   templateUrl: './line.component.html',
   styleUrls: ['./line.component.css']
-  
+
 })
 
 export class LineComponent {
-    constructor(private dragulaService: DragulaService) {
+
+  dragables = DRAGABLES;
+
+  constructor(private dragulaService: DragulaService) {
         dragulaService.setOptions('main-bag', {
           copy: function (el, source) {
             // To copy only elements in left container, the right container can still be sorted
@@ -34,16 +38,24 @@ export class LineComponent {
            */
         });
 
+        dragulaService.drag.subscribe((value) => {
+          console.log(`drag: ${value[0]}`);
+          console.log(value);
+          var div = value[0];
+        });
 
 
         dragulaService.drop.subscribe((value) => {
           console.log(`drop: ${value[0]}`);
           console.log(value[1]);
           var div = value[1];
-          
+          console.log('--- : '+ div.id);
+
+          const [bagName, e, el] = value;
+          console.log('id is:', e.dataset.id);
         });
       }
 
-      
+
 
 }

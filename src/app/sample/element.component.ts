@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Dragable } from '../model/dragable';
 
 @Component({
   selector: 'form-element',
@@ -8,8 +9,8 @@ import { Component, Input } from '@angular/core';
 
 export class ElementComponent {
 
-  @Input() text: string;
+  @Input() dragable: Dragable;
 
-    
-  
+  constructor() { }
+
 }
