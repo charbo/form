@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Dragable } from '../model/dragable';
 
 @Component({
-  selector: 'form-element',
-  templateUrl: './element.component.html',
-  styleUrls: ['./element.component.css']
+  selector: 'dragable',
+  templateUrl: './dragable.component.html',
+  styleUrls: ['./dragable.component.css']
 })
 
-export class ElementComponent {
+export class DragableComponent {
 
   @Input() dragable: Dragable;
 

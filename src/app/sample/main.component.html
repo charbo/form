@@ -2,7 +2,7 @@
   <div class='row'>
       <div class='col' [dragula]='"main-bag"' id="left">
 
-          <form-element *ngFor="let dragable of dragables" [dragable]="dragable" [attr.data-id]="dragable.id"></form-element>
+          <dragable *ngFor="let dragable of dragables" [dragable]="dragable" [attr.data-id]="dragable.id"></dragable>
 
       </div>
       <div class='col'>

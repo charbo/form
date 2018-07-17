@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { DRAGABLES } from '../service/mock-dragables';
+import { MockServiceDragable } from '../service/mock-form';
+import { Dragable } from '../model/dragable';
 
 @Component({
-  selector: 'line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.css']
+  selector: 'main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 
 })
 
-export class LineComponent {
+export class MainComponent {
 
-  dragables = DRAGABLES;
+  dragables: Dragable[] = [];
 
-  constructor(private dragulaService: DragulaService) {
+  constructor(dragulaService: DragulaService, dragableService: MockServiceDragable) {
         dragulaService.setOptions('main-bag', {
           copy: function (el, source) {
             // To copy only elements in left container, the right container can still be sorted
@@ -24,18 +26,6 @@ export class LineComponent {
             // To avoid draggin from right to left container
             return source.id === 'left' || source.id === target.id;
           }
-          /**
-          copy: true,
-          removeOnSpill: true,
-          // moves: function (el, container, handle) {
-          //  console.log(handle.classList.contains('handle'));
-          //  return handle.classList.contains('handle');
-          //},
-          accepts: function (el, target, source, sibling) {
-            return true;
-            //return (source.id === "left" && target.id === "right") || (source.id == target.id && source.id == "right");
-          }
-           */
         });
 
         dragulaService.drag.subscribe((value) => {
@@ -54,6 +44,13 @@ export class LineComponent {
           const [bagName, e, el] = value;
           console.log('id is:', e.dataset.id);
         });
+
+
+        let form = dragableService.getFrom();
+
+        for (let element of form.lines[0].elements) {
+          this.dragables.push(element.parent);
+        }
       }
 
 
