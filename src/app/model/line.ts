@@ -1,12 +1,12 @@
 import { Element } from "./element";
-import { Dragable } from "./dragable";
+import { Draggable } from "./draggable";
 
 export class Line {
     index: number;
     elements: Element[] = [];
 
-    insertElement(dragable: Dragable): void {
-        this.elements.push(new Element(dragable));
+    insertElement(draggable: Draggable): void {
+        this.elements.push(new Element(draggable));
     }
 
 }

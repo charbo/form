@@ -1,10 +1,10 @@
-import { Dragable } from "./dragable";
+import { Draggable } from "./draggable";
 
 export class Element {
     index: number;
-    parent: Dragable;
+    parent: Draggable;
 
-    public constructor(parent: Dragable) { 
+    public constructor(parent: Draggable) { 
         this.parent = parent; 
     }
 

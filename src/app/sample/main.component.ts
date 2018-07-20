@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
-import { DRAGABLES } from '../service/mock-dragables';
-import { MockServiceDragable } from '../service/mock-form';
-import { Dragable } from '../model/dragable';
+
+import { DraggableService } from '../service/draggable.service';
+import { Draggable } from '../model/draggable';
+import { Form } from '../model/form';
 
 @Component({
   selector: 'main',
@@ -13,9 +14,10 @@ import { Dragable } from '../model/dragable';
 
 export class MainComponent {
 
-  dragables: Dragable[] = [];
+  draggables: Draggable[] = [];
+  form: Form;
 
-  constructor(dragulaService: DragulaService, dragableService: MockServiceDragable) {
+  constructor(dragulaService: DragulaService, draggableService: DraggableService) {
         dragulaService.setOptions('main-bag', {
           copy: function (el, source) {
             // To copy only elements in left container, the right container can still be sorted
@@ -24,33 +26,24 @@ export class MainComponent {
           copySortSource: false,
           accepts: function(el, target, source, sibling) {
             // To avoid draggin from right to left container
-            return source.id === 'left' || source.id === target.id;
+            return source.id === 'left' || source.id.includes('line') && target.id.includes('line');
           }
         });
 
         dragulaService.drag.subscribe((value) => {
-          console.log(`drag: ${value[0]}`);
-          console.log(value);
-          var div = value[0];
+
         });
 
 
         dragulaService.drop.subscribe((value) => {
-          console.log(`drop: ${value[0]}`);
-          console.log(value[1]);
-          var div = value[1];
-          console.log('--- : '+ div.id);
-
-          const [bagName, e, el] = value;
-          console.log('id is:', e.dataset.id);
+          let draggableId = value[1].dataset.id;
+          let dropped = this.draggables.filter(draggable => draggable.name === draggableId);
+          console.log(dropped[0]);
         });
 
 
-        let form = dragableService.getFrom();
-
-        for (let element of form.lines[0].elements) {
-          this.dragables.push(element.parent);
-        }
+        draggableService.getDraggables().subscribe(draggables => this.draggables = draggables);
+  
       }
 
 
