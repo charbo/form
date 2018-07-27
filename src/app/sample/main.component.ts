@@ -4,6 +4,7 @@ import { DragulaService } from 'ng2-dragula';
 import { DraggableService } from '../service/draggable.service';
 import { Draggable } from '../model/draggable';
 import { Form } from '../model/form';
+import { Line } from '../model/line';
 
 @Component({
   selector: 'main',
@@ -15,7 +16,7 @@ import { Form } from '../model/form';
 export class MainComponent {
 
   draggables: Draggable[] = [];
-  form: Form;
+  form: Form = new Form();
 
   constructor(dragulaService: DragulaService, draggableService: DraggableService) {
         dragulaService.setOptions('main-bag', {
@@ -36,16 +37,18 @@ export class MainComponent {
 
 
         dragulaService.drop.subscribe((value) => {
-          let draggableId = value[1].dataset.id;
-          let dropped = this.draggables.filter(draggable => draggable.name === draggableId);
+          const draggableId = value[1].dataset.id;
+          const dropped = this.draggables.filter(draggable => draggable.name === draggableId);
           console.log(dropped[0]);
         });
 
 
         draggableService.getDraggables().subscribe(draggables => this.draggables = draggables);
-  
+
       }
 
 
-
+      addLine(): void {
+        this.form.addLine();
+      }
 }

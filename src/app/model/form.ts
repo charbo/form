@@ -1,10 +1,12 @@
-import { Line } from "./Line";
+import { Line } from './line';
 
 export class Form {
     label: string;
     lines: Line[] = [];
 
-    addLine(line: Line): void {
+    addLine(): void {
+        const line = new Line();
+        line.index = this.lines.length;
         this.lines.push(line);
     }
 }
