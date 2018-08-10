@@ -9,6 +9,7 @@ import { MainComponent } from './sample/main.component';
 import { DraggableComponent } from './sample/draggable.component';
 import { LineComponent } from './sample/line.component';
 import { DynamicComponent } from './generic/dynamic.component';
+import { CellComponent } from './sample/cell.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DynamicComponent } from './generic/dynamic.component';
     MainComponent,
     DraggableComponent,
     LineComponent,
+    CellComponent,
     DynamicComponent
   ],
   imports: [
