@@ -1,4 +1,14 @@
-<div class="drop-row row line" id="line-{{line.index}}">
-  <cell-component *ngFor="let cell of line.cells" [cell]="cell" [attr.data-id]="cell.id"></cell-component>
-  <div (click)="addCell()">ajout cellule</div>
+<div class="drop-row row" id="line-{{line.index}}">
+  <div class="container-fluid">
+    <div class="row line">
+      <div class="col-xl-11">
+        <div class="container-fluid">
+          <div class="row">
+            <cell-component *ngFor="let cell of line.cells" [cell]="cell" [attr.data-id]="cell.id"></cell-component>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-1" (click)="addCell()">ajout cellule</div>
+    </div>
+  </div>
 </div>
