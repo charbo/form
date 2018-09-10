@@ -13,6 +13,11 @@
   margin: 0 auto;
 }
 
+.no-animate {
+   -webkit-transition: none !important;
+   transition: none !important;
+}
+
 html, body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -43,6 +48,17 @@ html, body {
   cursor: -moz-grab;
   cursor: -webkit-grab;
 }
+
+.gu-mirror {
+  transition: all 0.4s ease-in-out;
+   cursor: move;
+   cursor: grab;
+   cursor: -moz-grab;
+   cursor: -webkit-grab;
+   -webkit-box-shadow: 0 0 20px #aaa;
+    box-shadow: 0 0 20px #aaa;
+}
+
 .gu-unselectable {
   cursor: grabbing;
   cursor: -moz-grabbing;
@@ -50,7 +66,7 @@ html, body {
   text-align: center;
 }
 .container-fluid .ex-moved {
-  background-color: #e74c3c;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .handle {
   background-color: rgba(0, 0, 0, 0.4);

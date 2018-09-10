@@ -1,5 +1,20 @@
 .cell {
   height: 4em;
-  width: 250px;
   border: 1px solid green;
+
+  float: none;/* Overwrites float left */
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wcent {
+  width: 100%;
+}
+
+.wfifty {
+  width: 50%;
+}
+
+.wtier {
+  width: 33%;
 }

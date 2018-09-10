@@ -12,7 +12,7 @@ export class Form {
     }
 
     addCell(lineIndex: number): void {
-      if (this.lines[lineIndex]) {
+      if (this.lines[lineIndex] && this.lines[lineIndex].cells.length < 3) {
         this.lines[lineIndex].addCell();
       }
     }

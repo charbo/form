@@ -11,7 +11,25 @@ import { Cell } from '../model/cell';
 export class CellComponent {
 
   @Input() cell: Cell;
+  @Input() size: number;
 
   constructor() { }
+
+    getWidth() {
+      switch (this.size) {
+        case 0:
+        case 1:
+          return 'wcent';
+        case 2:
+          return 'wfifty';
+        case 3:
+          return 'wtier';
+      }
+    }
+
+    getClass() {
+      return 'cell no-animate ' + this.getWidth();
+    }
+
 
 }
