@@ -21,6 +21,7 @@ export class MainComponent {
 
   constructor(dragulaService: DragulaService, draggableService: DummyService, formService: FormService) {
         this.formService = formService;
+        //this.dragulaService.createGroup('COPYABLE', {
         dragulaService.setOptions('main-bag', {
           copy: function (el, source) {
             // To copy only elements in left container, the right container can still be sorted
@@ -36,6 +37,7 @@ export class MainComponent {
           const [bagName, e, source] = value;
           if (source.id.includes('cell')) {
             const cellId = source.id;
+            //TODO a faire dans le drop après avoir stocké la ref de la cell source
             this.form.removeElementFromCell(cellId);
           }
         });
@@ -43,13 +45,15 @@ export class MainComponent {
 
         dragulaService.drop.subscribe((value) => {
           const cellId = value[2].id;
+
           const draggableId = value[1].dataset.id;
           const dropped = this.draggables.filter(draggable => draggable.name === draggableId);
-          this.form.addElementToCell(dropped[0], cellId);
-
+          const model = dropped[0].clone();
+          this.form.addElementToCell(model, cellId);
+          const component = value[1];
+          dropped[0].properties[0].value = 'zob';
           console.log(this.form);
         });
-
 
         //draggableService.getDraggables().subscribe(draggables => this.draggables = draggables);
         this.draggables = draggableService.getDraggables();

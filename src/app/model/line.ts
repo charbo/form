@@ -1,4 +1,3 @@
-import { Element } from './element';
 import { Draggable } from './draggable';
 import { Cell } from './cell';
 

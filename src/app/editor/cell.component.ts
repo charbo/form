@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Cell } from '../model/cell';
 
+import { PropertiesService } from '../service/properties.service';
 
 @Component({
   selector: 'cell-component',
@@ -9,13 +10,16 @@ import { Cell } from '../model/cell';
 })
 
 export class CellComponent {
+  private propertiesService: PropertiesService;
 
   @Input() cell: Cell;
   @Input() size: number;
 
-  constructor() { }
+  constructor(propertiesService: PropertiesService) {
+    this.propertiesService = propertiesService;
+  }
 
-    getWidth() {
+    getWidth(): string {
       switch (this.size) {
         case 0:
         case 1:
@@ -27,8 +31,13 @@ export class CellComponent {
       }
     }
 
-    getClass() {
+    getClass(): string {
       return 'cell no-animate ' + this.getWidth();
+    }
+
+    selectCell(): void {
+      console.log(this.cell);
+      this.propertiesService.setSelectedCell(this.cell);
     }
 
 

@@ -1,20 +1,19 @@
-import { Element } from './element';
 import { Draggable } from './draggable';
 
 export class Cell {
     id: string;
-    element: Element;
+    draggable: Draggable;
 
     setElement(draggable: Draggable): void {
-        this.element = new Element(draggable);
+        this.draggable = draggable;
     }
 
     clear(): void {
-      this.element = undefined;
+      this.draggable = undefined;
     }
 
     isFree(): boolean {
-      return this.element === undefined;
+      return this.draggable === undefined;
     }
 
 }

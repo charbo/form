@@ -6,13 +6,10 @@
     <div class="col-6 col-md-4 col-xl-4">
         <div (click)="addLine()">ajout ligne</div>
     </div>
-    <div class="col-6 col-md-4 col-xl-4">
-      <div (click)="addCell()">ajout cellule</div>
-    </div>
   </div>
   <div class="row flex-xl-nowrap">
     <div class="col-12 col-md col-xl-3">
-      <div class='col' [dragula]='"main-bag"' id="left">
+      <div class='col' [dragula]='"main-bag"' id="left" *ngIf="draggables">
         <draggable-component *ngFor="let draggable of draggables" [draggable]="draggable" [attr.data-id]="draggable.name"></draggable-component>
       </div>
     </div>
@@ -27,7 +24,11 @@
           </div>
         </div>
       </div>
-
+    </div>
+  </div>
+  <div class="row flex-xl-nowrap">
+    <div class="col-12">
+      <editor-component></editor-component>
     </div>
   </div>
 </div>

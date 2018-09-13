@@ -1,7 +1,7 @@
 import {
     Component, Input, NgModule, NgModuleFactory, Compiler, SimpleChanges
 } from '@angular/core';
-import { Draggable } from '../model/draggable';
+import { Draggable } from '../../model/draggable';
 
 
 @Component({
@@ -9,8 +9,8 @@ import { Draggable } from '../model/draggable';
     template: `<ng-container *ngComponentOutlet="dynamicComponent;
                             ngModuleFactory: dynamicModule;"></ng-container>`
 })
-export class DynamicComponent { 
-    
+export class DynamicComponent {
+
     dynamicComponent: any;
     dynamicModule: NgModuleFactory<any>;
 
@@ -18,19 +18,26 @@ export class DynamicComponent {
 
     constructor(private compiler: Compiler) {
     }
-    
+
     ngOnChanges(changes: SimpleChanges) {
-        if (changes['model'] && !changes['model'].isFirstChange()) {
+      console.log('entre on change');
+        if (changes['model']) {
+            console.log('create on change');
             this.dynamicComponent = this.createNewComponent(this.model);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
         }
     }
 
     ngOnInit() {
+      console.log('init dynamic');
         this.dynamicComponent = this.createNewComponent(this.model);
         this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
     }
-    
+
+    setModel(model: Draggable) {
+      this.model = model;
+    }
+
     protected createComponentModule(componentType: any) {
         @NgModule({
             declarations: [
@@ -56,9 +63,9 @@ export class DynamicComponent {
             constructor() {
                 this.draggable = model;
             }
-            
         }
 
         return MyDynamicComponent;
     }
+
 }
