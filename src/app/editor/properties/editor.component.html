@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="cell" class="container-fluid">
-        <div *ngFor="let propertie of cell.draggable.properties; let i = index" class="row">
+        <div *ngFor="let propertie of cell.draggables[0].properties; let i = index" class="row">
           <div class='col-6'>{{ propertie.key}}</div>
           <div class='col-6'><input type='text' name="{{ propertie.key}}" [(ngModel)]='propertie.value' (change)="update(i, propertie.value)"/></div>
         </div>

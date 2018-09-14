@@ -1,1 +1,3 @@
-<div (click)="selectCell()" [ngClass]="getClass()" [dragula]='"main-bag"' id="{{cell.id}}"></div>
+<div (click)="selectCell()" [ngClass]="getClass()" [dragula]='"main-bag"' id="{{cell.id}}" [(dragulaModel)]="cell.draggables">
+  <dynamic  *ngIf="cell.draggables[0]" [model]="cell.draggables[0]"></dynamic>
+</div>

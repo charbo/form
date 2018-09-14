@@ -27,7 +27,8 @@ import { EditorComponent } from './editor/properties/editor.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    DragulaModule
+    DragulaModule,
+    DragulaModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

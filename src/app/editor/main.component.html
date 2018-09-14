@@ -9,7 +9,7 @@
   </div>
   <div class="row flex-xl-nowrap">
     <div class="col-12 col-md col-xl-3">
-      <div class='col' [dragula]='"main-bag"' id="left" *ngIf="draggables">
+      <div class='col' [dragula]='"main-bag"' id="left" *ngIf="draggables" [(dragulaModel)]="draggables">
         <draggable-component *ngFor="let draggable of draggables" [draggable]="draggable" [attr.data-id]="draggable.name"></draggable-component>
       </div>
     </div>

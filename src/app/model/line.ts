@@ -13,16 +13,4 @@ export class Line {
         this.cells.push(cell);
     }
 
-    addElementToCell(draggable: Draggable, key: string): void {
-      const id = key.split('-');
-      const cell =  this.cells[+id[2]];
-      cell.setElement(draggable);
-    }
-
-    removeElementFromCell(key: string): void {
-      const id = key.split('-');
-      const cell =  this.cells[+id[2]];
-      cell.clear();
-    }
-
 }

@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Cell } from '../model/cell';
 
 import { PropertiesService } from '../service/properties.service';
+import { Draggable } from '../model/draggable';
 
 @Component({
   selector: 'cell-component',
@@ -10,6 +11,7 @@ import { PropertiesService } from '../service/properties.service';
 })
 
 export class CellComponent {
+
   private propertiesService: PropertiesService;
 
   @Input() cell: Cell;
@@ -39,6 +41,5 @@ export class CellComponent {
       console.log(this.cell);
       this.propertiesService.setSelectedCell(this.cell);
     }
-
 
 }
