@@ -38,7 +38,6 @@ export class CellComponent {
     }
 
     selectCell(): void {
-      console.log(this.cell);
       this.propertiesService.setSelectedCell(this.cell);
     }
 

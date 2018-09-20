@@ -1,5 +1,4 @@
 import { Line } from './line';
-import { Draggable } from './draggable';
 
 export class Form {
     label: string;
@@ -17,10 +16,10 @@ export class Form {
       }
     }
 
-
-    isFree(line: number, cell: number): boolean {
-      if (this.lines[line] && this.lines[line].cells[cell]) {
-       return this.lines[line].cells[cell].isFree();
-      }
+    generateHtml(): void {
+      let result = '';
+      this.lines.forEach(l => result += l.getHtml());
+      console.log(result);
     }
+
 }

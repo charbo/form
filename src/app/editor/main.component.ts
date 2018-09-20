@@ -44,4 +44,10 @@ export class MainComponent {
       addLine(): void {
         this.formService.addLine();
       }
+
+      displayHtml(): void {
+        console.log("*******");
+        console.log(this.form);
+        this.form.generateHtml();
+      }
 }

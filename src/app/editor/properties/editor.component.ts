@@ -26,9 +26,5 @@ export class EditorComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  update(i: number, value: string): void {
-    console.log(value);
-  }
-
 }
 

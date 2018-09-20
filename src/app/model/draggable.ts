@@ -3,7 +3,7 @@ import { Propertie } from './propertie';
 export class Draggable {
   type: string;
   name: string;
-  properties: Propertie[] = [];
+  properties: Propertie[] = new Array();
   template: string;
   html: string;
 
@@ -28,5 +28,11 @@ export class Draggable {
   }
 
     return clone;
+  }
+
+
+  getHtml(): string {
+    this.properties.forEach(p => this.html = this.html.replace('\${' + p.key + '}', p.value));
+    return this.html;
   }
 }

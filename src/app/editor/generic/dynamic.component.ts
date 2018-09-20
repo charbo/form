@@ -20,8 +20,7 @@ export class DynamicComponent {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-      console.log('entre on change');
-        if (changes['model']) {
+        if (changes['model'] && !changes['model'].isFirstChange()) {
             console.log('create on change');
             this.dynamicComponent = this.createNewComponent(this.model);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
@@ -29,7 +28,6 @@ export class DynamicComponent {
     }
 
     ngOnInit() {
-      console.log('init dynamic');
         this.dynamicComponent = this.createNewComponent(this.model);
         this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
     }

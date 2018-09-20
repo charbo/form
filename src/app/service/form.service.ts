@@ -21,9 +21,4 @@ export class FormService {
     this.form.addCell(selectedLine);
   }
 
-  isFree(targetId: string): boolean {
-    const ids = targetId.split('-');
-    return this.form.isFree(+ids[1], +ids[2]);
-  }
-
 }
