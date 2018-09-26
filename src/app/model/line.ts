@@ -13,9 +13,7 @@ export class Line {
     }
 
     getHtml(): string {
-      let result = '<div>';
-      this.cells.forEach(c => result += c.getHtml());
-      return result + '</div>';
+      return '<div>' + this.cells.map(c => c.getHtml()).join('') + '</div>';
     }
 
 }

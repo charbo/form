@@ -11,7 +11,7 @@ export class DummyService {
 
   getDraggables ():  Draggable[] {
       // tslint:disable-next-line:max-line-length
-    const d1 = '{"type":"input","name":"input","template":"<div [attr.data-id]=\\"draggable.name\\">{{draggable.properties[0].value}}  <input type=\'text\'/> </div>","html":"<div>${label}  <input type=\'text\'/> </div>","properties":[{"key" : "label", "value" : "label"}]}';
+    const d1 = '{"type":"input","name":"input","template":"<div [attr.data-id]=\\"draggable.name\\">{{draggable.properties[0].value}}  <input type=\'text\' placeholder=\\"{{draggable.properties[1].value}}\\"/> </div>","html":"<div>${label}  <input type=\'text\' placeholder=\'${placeholder}\' /> </div>","properties":[{"key" : "label", "value" : "label"}, {"key" : "placeholder", "value" : "placeholder"}]}';
     // tslint:disable-next-line:max-line-length
     const d2 = '{"type":"button","name":"button","template":"<div [attr.data-id]=\\"draggable.name\\"><button type=\'button\'>{{draggable.properties[0].value}}</button></div>","html":"<div><button type=\'button\'>${label}</button></div>","properties":[{"key" : "label", "value" : "label"}]}';
     // return JSON.parse(JSON.stringify(datas));

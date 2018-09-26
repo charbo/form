@@ -32,7 +32,8 @@ export class Draggable {
 
 
   getHtml(): string {
-    this.properties.forEach(p => this.html = this.html.replace('\${' + p.key + '}', p.value));
-    return this.html;
+    let result = this.html;
+    this.properties.forEach(p => result = result.replace('\${' + p.key + '}', p.value));
+    return result;
   }
 }
