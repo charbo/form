@@ -2,6 +2,7 @@ import {
     Component, Input, NgModule, NgModuleFactory, Compiler, SimpleChanges
 } from '@angular/core';
 import { Draggable } from '../../model/draggable';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -21,7 +22,6 @@ export class DynamicComponent {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['model'] && !changes['model'].isFirstChange()) {
-            console.log('create on change');
             this.dynamicComponent = this.createNewComponent(this.model);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
         }
@@ -40,6 +40,9 @@ export class DynamicComponent {
         @NgModule({
             declarations: [
                 componentType
+            ],
+            imports: [
+              CommonModule
             ],
             entryComponents: [componentType]
         })
