@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PropertiesService } from '../../service/properties.service';
 import { Cell } from '../../model/cell';
+import { Values } from '../../model/values';
 
 
 @Component({
@@ -20,10 +21,15 @@ export class EditorComponent implements OnDestroy {
     this.subscription = this.propertiesService.getCell().subscribe(cell => {this.cell = cell; console.log('-- ' + this.cell); });
   }
 
-
   ngOnDestroy(): void {
     // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
+  }
+
+  addValue(): void {
+    // tslint:disable-next-line:no-shadowed-variable
+    const value = this.cell.getDraggable().values.filter(value => value.key === 'options');
+    value[0].values.push("new value");
   }
 
 }

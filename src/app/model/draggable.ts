@@ -30,12 +30,10 @@ export class Draggable {
     clone.values = new Array();
 
     for (let _i = 0; _i < this.values.length; _i++) {
-      console.log(_i);
       const value = this.values[_i];
       const nv = new Values();
       nv.key = value.key;
       for (let _j = 0; _j < value.values.length; _j++) {
-        console.log('jjj ' + _j);
         nv.values.push(value.values[_j]);
       }
       clone.values.push(nv);

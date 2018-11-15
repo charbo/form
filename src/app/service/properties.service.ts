@@ -6,7 +6,6 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PropertiesService {
   private subject = new Subject<Cell>();
-  private cell: Cell;
 
   constructor() { }
 

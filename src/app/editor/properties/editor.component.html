@@ -1,16 +1,19 @@
 <div>
     <div *ngIf="cell" class="container-fluid">
-        <div *ngFor="let propertie of cell.draggables[0].properties; let i = index" class="row">
+        <div *ngFor="let propertie of cell.getDraggable().properties; let i = index" class="row">
           <div class='col-6'>{{ propertie.key}}</div>
           <div class='col-6'><input type='text' name="{{ propertie.key}}" [(ngModel)]='propertie.value'/></div>
         </div>
     </div>
     <div *ngIf="cell" class="container-fluid">
-      <div *ngFor="let value of cell.draggables[0].values; let i = index">
-          <div *ngFor="let v of cell.draggables[0].values[i].values; let j = index" class="row">
+      <div *ngFor="let value of cell.getDraggable().values; let i = index">
+          <div *ngFor="let v of cell.getDraggable().values[i].values; let j = index" class="row">
             <div class='col-6'>{{ value.key}} {{j}}</div>
             <div class='col-6'><input type='text' name="{{ v }}" [(ngModel)]='value.values[j]'/></div>
           </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-1" (click)="addValue()">ajout valeur</div>
       </div>
   </div>
 </div>
