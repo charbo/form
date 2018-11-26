@@ -20,6 +20,9 @@ export class EditorComponent implements OnDestroy {
     this.subscription = this.propertiesService.getCell().subscribe(cell => {this.cell = cell; console.log('-- ' + this.cell); });
   }
 
+  trackByFn(index: number): number {
+    return index;
+  }
 
   ngOnDestroy(): void {
     // unsubscribe to ensure no memory leaks
