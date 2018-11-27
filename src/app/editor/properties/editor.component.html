@@ -6,10 +6,10 @@
         </div>
     </div>
     <div *ngIf="cell" class="container-fluid">
-      <div *ngFor="let value of cell.getDraggable().values; let i = index">
-          <div *ngFor="let v of cell.getDraggable().values[i].values; let j = index" class="row">
-            <div class='col-6'>{{ value.key}} {{j}}</div>
-            <div class='col-6'><input type='text' name="{{ v }}" [(ngModel)]='value.values[j]'/></div>
+      <div *ngFor="let value of cell.draggables[0].values">
+        <div *ngFor="let values of value.values; trackBy:trackByFn; let index = index" class="row">
+            <div class='col-6'>{{ value.key}} {{index}}</div>
+            <div class='col-6'><input type='text' [name]="values" [(ngModel)]="value.values[index]"/></div>
           </div>
       </div>
       <div class="row">

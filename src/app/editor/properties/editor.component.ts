@@ -21,6 +21,9 @@ export class EditorComponent implements OnDestroy {
     this.subscription = this.propertiesService.getCell().subscribe(cell => {this.cell = cell; console.log('-- ' + this.cell); });
   }
 
+  trackByFn(index: number): number {
+    return index;
+  }
   ngOnDestroy(): void {
     // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
@@ -29,7 +32,7 @@ export class EditorComponent implements OnDestroy {
   addValue(): void {
     // tslint:disable-next-line:no-shadowed-variable
     const value = this.cell.getDraggable().values.filter(value => value.key === 'options');
-    value[0].values.push("new value");
+    value[0].values.push('new value');
   }
 
 }
