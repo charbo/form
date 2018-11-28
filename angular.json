@@ -25,7 +25,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "assets/components/ccommun.js",
+              "assets/components/chtml.js"
+            ]
           },
           "configurations": {
             "production": {
