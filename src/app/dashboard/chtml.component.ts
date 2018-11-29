@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 declare function initChtml(): any;
-declare function CComponent(): any;
 
 @Component({
   selector: 'chtml-component',

@@ -23,11 +23,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "assets/c3js/c3.css"
             ],
             "scripts": [
+              "assets/jquery/jquery.js",
+              "assets/c3js/d3.v3.js",
+              "assets/c3js/c3.js",
               "assets/components/ccommun.js",
-              "assets/components/chtml.js"
+              "assets/components/chtml.js",
+              "assets/components/cc3js.js"
             ]
           },
           "configurations": {

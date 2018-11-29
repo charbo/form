@@ -191,7 +191,7 @@ function refreshSimpleBar(chart, datas, component) {
 }
 
 function SimpleSerieC3(id, divId, childs, dataset, parameters, opts, type) {
-    Component.call(this, id, divId, childs, dataset, parameters, opts);
+    CComponent.call(this, id, divId, childs, dataset, parameters, opts);
     this.type = type;
     var _instance = this;
     this.create = function() {
@@ -239,7 +239,7 @@ function SimpleSerieC3(id, divId, childs, dataset, parameters, opts, type) {
     this.chart = this.create();
 }
 
-SimpleSerieC3.prototype = Object.create(Component.prototype);
+SimpleSerieC3.prototype = Object.create(CComponent.prototype);
 SimpleSerieC3.prototype.constructor = SimpleSerieC3;
 
 function C3Donut(id, divId, childs, dataset, parameters, opts) {
