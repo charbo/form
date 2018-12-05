@@ -1,8 +1,10 @@
 import {
-    Component, Input, NgModule, NgModuleFactory, Compiler, SimpleChanges
+    Component, Input, NgModule, NgModuleFactory, Compiler, SimpleChanges, OnInit, OnChanges
 } from '@angular/core';
 import { Draggable } from '../../model/draggable';
 import { CommonModule } from '@angular/common';
+import { CHtmlComponent } from '../../dashboard/chtml.component';
+import { DashboardModule } from '../../dashboard/dashboard.module';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { CommonModule } from '@angular/common';
     template: `<ng-container *ngComponentOutlet="dynamicComponent;
                             ngModuleFactory: dynamicModule;"></ng-container>`
 })
-export class DynamicComponent {
+export class DynamicComponent implements OnInit, OnChanges {
 
     dynamicComponent: any;
     dynamicModule: NgModuleFactory<any>;
@@ -21,6 +23,7 @@ export class DynamicComponent {
     }
 
     ngOnChanges(changes: SimpleChanges) {
+      console.log('dynamic change');
         if (changes['model'] && !changes['model'].isFirstChange()) {
             this.dynamicComponent = this.createNewComponent(this.model);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
@@ -28,7 +31,9 @@ export class DynamicComponent {
     }
 
     ngOnInit() {
+        console.log('dynamic init');
         this.dynamicComponent = this.createNewComponent(this.model);
+        // tslint:disable-next-line:max-line-length
         this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
     }
 
@@ -37,12 +42,15 @@ export class DynamicComponent {
     }
 
     protected createComponentModule(componentType: any) {
+
+
         @NgModule({
             declarations: [
                 componentType
             ],
             imports: [
-              CommonModule
+              CommonModule,
+              DashboardModule
             ],
             entryComponents: [componentType]
         })
@@ -51,6 +59,26 @@ export class DynamicComponent {
         // a module for just this Type
         return RuntimeComponentModule;
     }
+
+
+    protected createComponentModuleBis(componentType: any) {
+
+
+      @NgModule({
+          declarations: [
+              componentType,
+              CHtmlComponent
+          ],
+          imports: [
+            CommonModule
+          ],
+          entryComponents: [componentType]
+      })
+      class RuntimeComponentModule {
+      }
+      // a module for just this Type
+      return RuntimeComponentModule;
+  }
 
     protected createNewComponent(model: Draggable) {
 

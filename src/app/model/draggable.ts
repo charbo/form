@@ -13,7 +13,7 @@ export class Draggable {
   clone(): Draggable {
     const clone = new Draggable();
     clone.type = this.type;
-    clone.name = this.name;
+    clone.name = this.name +  Math.floor(Math.random() * 1000);
 
     clone.template = this.template;
     clone.html = this.html;

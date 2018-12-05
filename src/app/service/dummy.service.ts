@@ -15,14 +15,18 @@ export class DummyService {
     // tslint:disable-next-line:max-line-length
     const d2 = '{"type":"button","name":"button","template":"<div [attr.data-id]=\\"draggable.name\\"><button type=\'button\'>{{draggable.properties[0].value}}</button></div>","html":"<div><button type=\'button\'>${label}</button></div>","properties":[{"key" : "label", "value" : "label"}]}';
 
-
     // tslint:disable-next-line:max-line-length
     const d3 = '{"type":"list","name":"list","template":"<div [attr.data-id]=\\"draggable.name\\"><select><option *ngFor=\\"let v of draggable.values[0].values\\" [value]=\\"v\\">{{v}}</option></select></div>", "html":"<div>TODO</div>","values":  [{"key" : "options", "values" : ["name1", "name2"]}]}';
+
+
+    // tslint:disable-next-line:max-line-length
+    const d4 = '{"type":"chart","name":"chart","template":"<chtml-component [id]=\\"draggable.name\\" [attr.data-id]=\\"draggable.name\\"></chtml-component>", "html":"<div>TODO</div>","properties":[{"key" : "url", "value" : "url"}]}';
 
     const drag1: Draggable = Object.assign(new Draggable(), JSON.parse(d1));
     const drag2: Draggable = Object.assign(new Draggable(), JSON.parse(d2));
     const drag3: Draggable = Object.assign(new Draggable(), JSON.parse(d3));
-    return Array.of(drag1, drag2, drag3);
+    const drag4: Draggable = Object.assign(new Draggable(), JSON.parse(d4));
+    return Array.of(drag1, drag2, drag3, drag4);
   }
 
 

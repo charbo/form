@@ -13,7 +13,7 @@ import { LineComponent } from './editor/line.component';
 import { DynamicComponent } from './editor/generic/dynamic.component';
 import { CellComponent } from './editor/cell.component';
 import { EditorComponent } from './editor/properties/editor.component';
-import { CHtmlComponent } from './dashboard/chtml.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,6 @@ import { CHtmlComponent } from './dashboard/chtml.component';
     LineComponent,
     CellComponent,
     EditorComponent,
-    CHtmlComponent,
     DynamicComponent
   ],
   imports: [
@@ -32,7 +31,11 @@ import { CHtmlComponent } from './dashboard/chtml.component';
     FormsModule,
     HttpClientModule,
     DragulaModule,
+    DashboardModule,
     DragulaModule.forRoot()
+  ],
+  exports: [
+
   ],
   providers: [],
   bootstrap: [AppComponent]

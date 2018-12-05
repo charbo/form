@@ -110,11 +110,7 @@ function CDynamicText(id, divId, childs, dataset, parameters, opts) {
 CDynamicText.prototype = Object.create(CComponent.prototype);
 CDynamicText.prototype.constructor = CDynamicText;
 
-function initChtml() {
-  var optionstextrental = new Array();
-  optionstextrental['text'] = 'all rental by month';
-  var textrental = new CDynamicText('charttextrental', 'textrental', [], '', [], optionstextrental);
-
+function initChtml(id) {
   var callServer = function(name, component) {
     var params = extractparameters(component, event);
     $.ajax({
@@ -147,7 +143,7 @@ function initChtml() {
     return params;
 };
 
-  var multi = new C3MultiBar('chartmulti', 'multi', ['img', 'category'], new Dataset('rental', 'http://localhost:9090/datas'), [], new Array());
+  var multi = new C3MultiBar('chart'+ id, id, ['img', 'category'], new Dataset('rental', 'http://localhost:9090/datas'), [], new Array());
   callServer('', multi);
 }
 
