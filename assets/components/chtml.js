@@ -112,7 +112,7 @@ CDynamicText.prototype.constructor = CDynamicText;
 
 function initChtml(id) {
   var callServer = function(name, component) {
-    var params = extractparameters(component, event);
+    var params = extractparameters(component);
     $.ajax({
            type: "POST",
            url: component.dataset.url,

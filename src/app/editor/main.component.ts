@@ -46,8 +46,12 @@ export class MainComponent {
       }
 
       displayHtml(): void {
-        console.log("*******");
-        console.log(this.form);
         this.form.generateHtml();
+      }
+
+      displayComponent($event): void {
+        const draggableName = $event.target.attributes['data-id'].value;
+        const draggable = this.draggables.filter(d => d.name === draggableName);
+        draggable[0].visibility = true;
       }
 }

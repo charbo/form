@@ -12,7 +12,6 @@ export class CHtmlComponent implements AfterViewInit {
   @Input() id: string;
 
   ngAfterViewInit(): void {
-    console.log('---- ' + this.id);
     initChtml(this.id);
   }
 

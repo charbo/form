@@ -61,25 +61,6 @@ export class DynamicComponent implements OnInit, OnChanges {
     }
 
 
-    protected createComponentModuleBis(componentType: any) {
-
-
-      @NgModule({
-          declarations: [
-              componentType,
-              CHtmlComponent
-          ],
-          imports: [
-            CommonModule
-          ],
-          entryComponents: [componentType]
-      })
-      class RuntimeComponentModule {
-      }
-      // a module for just this Type
-      return RuntimeComponentModule;
-  }
-
     protected createNewComponent(model: Draggable) {
 
         @Component({

@@ -10,7 +10,7 @@
   <div class="row flex-xl-nowrap">
     <div class="col-12 col-md col-xl-3">
       <div class='col' [dragula]='"main-bag"' id="left" *ngIf="draggables" [(dragulaModel)]="draggables">
-        <draggable-component *ngFor="let draggable of draggables" [draggable]="draggable" [attr.data-id]="draggable.name"></draggable-component>
+        <draggable-component *ngFor="let draggable of draggables" [draggable]="draggable" [attr.data-id]="draggable.name" (mouseenter)="displayComponent($event)"></draggable-component>
       </div>
     </div>
 
@@ -35,5 +35,6 @@
       <button type="button" (click)="displayHtml()">Afficher HTML</button>
   </div>
   <div>
+
   </div>
 </div>
