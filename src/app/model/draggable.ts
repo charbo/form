@@ -8,7 +8,7 @@ export class Draggable {
   values: Values[] = new Array();
   template: string;
   html: string;
-  visibility = false;
+  visibility = 'always';
 
 
   clone(): Draggable {

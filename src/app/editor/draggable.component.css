@@ -1,3 +1,15 @@
 .drag-row {
   min-height: 75px;
 }
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.always {
+  display: block;
+}

@@ -51,7 +51,17 @@ export class MainComponent {
 
       displayComponent($event): void {
         const draggableName = $event.target.attributes['data-id'].value;
-        const draggable = this.draggables.filter(d => d.name === draggableName);
-        draggable[0].visibility = true;
+        const draggable = this.draggables.filter(d => d.name === draggableName && d.visibility === 'hidden');
+        if (draggable[0]) {
+          draggable[0].visibility = 'visible';
+        }
+      }
+
+      hideComponent($event): void {
+        const draggableName = $event.target.attributes['data-id'].value;
+        const draggable = this.draggables.filter(d => d.name === draggableName && d.visibility === 'visible');
+        if (draggable[0]) {
+          draggable[0].visibility = 'hidden';
+        }
       }
 }

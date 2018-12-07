@@ -18,12 +18,13 @@ export class EditorComponent implements OnDestroy {
 
 
   constructor(private propertiesService: PropertiesService) {
-    this.subscription = this.propertiesService.getCell().subscribe(cell => {this.cell = cell; console.log('-- ' + this.cell); });
+    this.subscription = this.propertiesService.getCell().subscribe(cell => {this.cell = cell; });
   }
 
   trackByFn(index: number): number {
     return index;
   }
+
   ngOnDestroy(): void {
     // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();

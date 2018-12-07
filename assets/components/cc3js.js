@@ -199,15 +199,12 @@ function SimpleSerieC3(id, divId, childs, dataset, parameters, opts, type) {
             case 'pie':
             case 'donut':
                 return generateChart(_instance);
-                break;
             case 'line':
             case 'bar':
                 return generateBar(_instance);
-                break;
             case 'stackedbar':
             case 'multibar':
                 return generateMultiBar(_instance);
-                break;
         }
     }
 

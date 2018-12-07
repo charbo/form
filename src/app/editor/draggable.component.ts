@@ -13,4 +13,8 @@ export class DraggableComponent {
 
   constructor() { }
 
+  getClass(): string {
+    return this.draggable.visibility;
+  }
+
 }

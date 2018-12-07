@@ -15,5 +15,10 @@ export class CHtmlComponent implements AfterViewInit {
     initChtml(this.id);
   }
 
+  @Input()
+  set url(url: string) {
+    console.log('got url: ', url);
+  }
+
 }
 
