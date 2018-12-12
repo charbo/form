@@ -1,9 +1,9 @@
 <div class="container-fluid" style="border:1px solid yellow;">
   <div class="row flex-xl-nowrap">
-    <div class="col-12 col-md col-xl-3">
-
+    <div class="col-4 col-md col-xl-3">
+      <div (click)="createChart()">Créer chart</div>
     </div>
-    <div class="col-6 col-md-4 col-xl-4">
+    <div class="col-8 col-md-4 col-xl-4">
         <div (click)="addLine()">ajout ligne</div>
     </div>
   </div>
@@ -37,9 +37,8 @@
     </div>
   </div>
   <div class="row flex-xl-nowrap">
-      <button type="button" (click)="displayHtml()">Afficher HTML</button>
-  </div>
-  <div>
-
+    <div class="col-12">
+      <chart-component></chart-component>
+    </div>
   </div>
 </div>

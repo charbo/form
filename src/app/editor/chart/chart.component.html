@@ -1,0 +1,11 @@
+<div>
+    <div *ngIf="draggable" class="container-fluid">
+        <div class="row">
+          <div class='col-6'>Nom: </div>
+          <div class='col-6'><input type='text' name="{{ draggable.name}}" [(ngModel)]='draggable.name'/></div>
+        </div>
+        <div class="row">
+            <div class='col-12' (click)="valider()">Valider</div>
+          </div>
+    </div>
+</div>

@@ -1,53 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
 import { Draggable } from '../model/draggable';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({ providedIn: 'root' })
 export class DraggableService {
 
-  private draggableUrl = 'http://localhost:9090/datas';  // URL to web api
+  private draggables: Draggable[] = new Array();
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  /** GET heroes from the server */
-  getDraggables (): Observable<Draggable[]> {
-    return this.http.get<Draggable[]>(this.draggableUrl)
-      .pipe(
-        tap(draggable => this.log('fetched draggables')),
-        catchError(this.handleError('getDraggables', []))
-      );
+  getDraggables():  Draggable[] {
+      // tslint:disable-next-line:max-line-length
+    const d1 = '{"type":"input","name":"input","template":"<div [attr.data-id]=\\"draggable.name\\">{{draggable.properties[0].value}}  <input type=\'text\' placeholder=\\"{{draggable.properties[1].value}}\\"/> </div>","html":"<div>${label}  <input type=\'text\' placeholder=\'${placeholder}\' /> </div>","properties":[{"key" : "label", "value" : "label"}, {"key" : "placeholder", "value" : "placeholder"}]}';
+    // tslint:disable-next-line:max-line-length
+    const d2 = '{"type":"button","name":"button","template":"<div [attr.data-id]=\\"draggable.name\\"><button type=\'button\'>{{draggable.properties[0].value}}</button></div>","html":"<div><button type=\'button\'>${label}</button></div>","properties":[{"key" : "label", "value" : "label"}]}';
+
+    // tslint:disable-next-line:max-line-length
+    const d3 = '{"type":"list","name":"list","template":"<div [attr.data-id]=\\"draggable.name\\"><select><option *ngFor=\\"let v of draggable.values[0].values\\" [value]=\\"v\\">{{v}}</option></select></div>", "html":"<div>TODO</div>","values":  [{"key" : "options", "values" : ["name1", "name2"]}]}';
+
+
+    // tslint:disable-next-line:max-line-length
+    const d4 = '{"type":"chart","name":"chart","visibility":"hidden","template":"<chtml-component [id]=\\"draggable.name\\" [url]=\\"draggable.properties[0].value\\" [attr.data-id]=\\"draggable.name\\"></chtml-component>", "html":"<div>TODO</div>","properties":[{"key" : "url", "value" : "url"}]}';
+
+
+    const drag4: Draggable = Object.assign(new Draggable(), JSON.parse(d4));
+    this.draggables.push(drag4);
+    return this.draggables;
   }
 
-   /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  addChart(draggable: Draggable): void {
+    this.draggables.push(draggable);
   }
 
-  /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    console.log(message);
-  }
+
 }
+
+
+
+
+

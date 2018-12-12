@@ -12,6 +12,7 @@ import { DraggableComponent } from './editor/draggable.component';
 import { LineComponent } from './editor/line.component';
 import { CellComponent } from './editor/cell.component';
 import { EditorComponent } from './editor/properties/editor.component';
+import { ChartComponent } from './editor/chart/chart.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DraggableComponent,
     LineComponent,
     CellComponent,
-    EditorComponent
+    EditorComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
