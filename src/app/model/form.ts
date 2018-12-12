@@ -16,10 +16,5 @@ export class Form {
       }
     }
 
-    generateHtml(): void {
-      let result = '';
-      this.lines.forEach(l => result += l.getHtml());
-      console.log(result);
-    }
 
 }

@@ -6,8 +6,6 @@ export class Draggable {
   name: string;
   properties: Propertie[] = new Array();
   values: Values[] = new Array();
-  template: string;
-  html: string;
   visibility = 'always';
 
 
@@ -16,8 +14,6 @@ export class Draggable {
     clone.type = this.type;
     clone.name = this.name +  Math.floor(Math.random() * 1000);
 
-    clone.template = this.template;
-    clone.html = this.html;
     clone.properties = new Array();
 
     for (let _i = 0; _i < this.properties.length; _i++) {
@@ -43,10 +39,4 @@ export class Draggable {
     return clone;
   }
 
-
-  getHtml(): string {
-    let result = this.html;
-    this.properties.forEach(p => result = result.replace('\${' + p.key + '}', p.value));
-    return result;
-  }
 }

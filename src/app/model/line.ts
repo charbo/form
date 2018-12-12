@@ -12,8 +12,5 @@ export class Line {
         this.cells.push(cell);
     }
 
-    getHtml(): string {
-      return '<div>' + this.cells.map(c => c.getHtml()).join('') + '</div>';
-    }
 
 }

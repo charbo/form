@@ -5,10 +5,6 @@ export class Cell {
     //Hummm array à cause de dragula?
     draggables: Draggable[] = new Array();
 
-    getHtml(): string {
-      return this.draggables[0].getHtml();
-    }
-
     getDraggable(): Draggable {
       return this.draggables[0];
     }

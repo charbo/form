@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './editor/main.component';
 import { DraggableComponent } from './editor/draggable.component';
 import { LineComponent } from './editor/line.component';
-import { DynamicComponent } from './editor/generic/dynamic.component';
 import { CellComponent } from './editor/cell.component';
 import { EditorComponent } from './editor/properties/editor.component';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -22,8 +21,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DraggableComponent,
     LineComponent,
     CellComponent,
-    EditorComponent,
-    DynamicComponent
+    EditorComponent
   ],
   imports: [
     BrowserModule,

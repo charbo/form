@@ -19,7 +19,7 @@ export class MainComponent {
   draggables: Draggable[] = [];
   form: Form;
 
-  constructor(dragulaService: DragulaService, draggableService: DummyService, formService: FormService) {
+  constructor(dragulaService: DragulaService, formService: FormService) {
         this.formService = formService;
 
         dragulaService.createGroup('main-bag', {
@@ -35,8 +35,12 @@ export class MainComponent {
           }
         });
 
-        //draggableService.getDraggables().subscribe(draggables => this.draggables = draggables);
-        this.draggables = draggableService.getDraggables();
+        // tslint:disable-next-line:max-line-length
+        const d4 = '{"type":"chart","name":"chart","visibility":"hidden", "properties":[{"key" : "url", "value" : "url"}]}';
+
+        const drag4: Draggable = Object.assign(new Draggable(), JSON.parse(d4));
+
+        this.draggables = Array.of(drag4);
         this.form = this.formService.getForm();
       }
 
@@ -46,7 +50,7 @@ export class MainComponent {
       }
 
       displayHtml(): void {
-        this.form.generateHtml();
+
       }
 
       displayComponent($event): void {

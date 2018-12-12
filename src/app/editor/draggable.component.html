@@ -1,1 +1,1 @@
-<div class='drag-row col'>Un composant <dynamic [model]="draggable" id="dynamic{{draggable.name}}" [ngClass]="getClass()"></dynamic></div>
+<div class='drag-row col'>Un composant <chtml-component [id]="draggable.name" [url]="draggable.properties[0].value" [attr.data-id]="draggable.name"></chtml-component></div>

@@ -22,11 +22,9 @@ export class DummyService {
     // tslint:disable-next-line:max-line-length
     const d4 = '{"type":"chart","name":"chart","visibility":"hidden","template":"<chtml-component [id]=\\"draggable.name\\" [url]=\\"draggable.properties[0].value\\" [attr.data-id]=\\"draggable.name\\"></chtml-component>", "html":"<div>TODO</div>","properties":[{"key" : "url", "value" : "url"}]}';
 
-    const drag1: Draggable = Object.assign(new Draggable(), JSON.parse(d1));
-    const drag2: Draggable = Object.assign(new Draggable(), JSON.parse(d2));
-    const drag3: Draggable = Object.assign(new Draggable(), JSON.parse(d3));
+
     const drag4: Draggable = Object.assign(new Draggable(), JSON.parse(d4));
-    return Array.of(drag1, drag2, drag3, drag4);
+    return Array.of(drag4);
   }
 
 
