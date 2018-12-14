@@ -2,7 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { Cell } from '../model/cell';
 
 import { PropertiesService } from '../service/properties.service';
-import { Draggable } from '../model/draggable';
+
 
 @Component({
   selector: 'cell-component',

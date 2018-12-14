@@ -4,6 +4,7 @@ import { Values } from './values';
 export class Draggable {
   type: string;
   name: string;
+  dataset: string;
   properties: Propertie[] = new Array();
   values: Values[] = new Array();
   visibility = 'always';
@@ -12,7 +13,8 @@ export class Draggable {
   clone(): Draggable {
     const clone = new Draggable();
     clone.type = this.type;
-    clone.name = this.name +  Math.floor(Math.random() * 1000);
+    clone.name = this.name +  'clone';
+    clone.dataset = this.dataset;
 
     clone.properties = new Array();
 

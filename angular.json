@@ -27,10 +27,13 @@
               "assets/c3js/c3.css"
             ],
             "scripts": [
+              "assets/rx/rx.lite.js",
               "assets/jquery/jquery.js",
               "assets/c3js/d3.v3.js",
               "assets/c3js/c3.js",
               "assets/components/ccommun.js",
+              "assets/components/dashboard.engine.js",
+              "assets/components/angular.bridge.js",
               "assets/components/chtml.js",
               "assets/components/cc3js.js"
             ]
