@@ -1,6 +1,6 @@
 function generateChart(parent) {
     var _instance = parent;
-    console.log('create c3chart ' + parent.divId + " " + parent.id);
+    console.log('generateChart ' + parent.divId + " " + parent.id);
     var html = '<div id="' + parent.id + '"/>';
     document.getElementById(parent.divId).innerHTML = html;
     var chart = c3.generate({
@@ -21,7 +21,7 @@ function generateChart(parent) {
 
 function generateBar(parent) {
     var _instance = parent;
-    console.log('create c3bar ' + parent.divId + " " + parent.id);
+    console.log('generateBar ' + parent.divId + " " + parent.id);
     var html = '<div id="' + parent.id + '"/>';
     document.getElementById(parent.divId).innerHTML = html;
     var chart = c3.generate({
@@ -47,7 +47,7 @@ function generateBar(parent) {
 
 function generateMultiBar(parent) {
     var _instance = parent;
-    console.log('create c3bar ' + parent.divId + " " + parent.id);
+    console.log('generateMultiBar ' + parent.divId + " " + parent.id);
     var html = '<div id="' + parent.id + '"/>';
     document.getElementById(parent.divId).innerHTML = html;
     var chart = c3.generate({

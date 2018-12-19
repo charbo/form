@@ -18,7 +18,7 @@ export class ChartService {
   }
 
   getAvailableTypes(): string[] {
-    return ['multibar', 'bar'];
+    return ['multibar', 'bar', 'line', 'donut'];
   }
 
 }

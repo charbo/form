@@ -31,10 +31,14 @@ export class DummyService {
   getRequests(): Request[] {
     const r1 = '{"name": "rental"}';
     const r2 = '{"name": "category", "parameters":[{"key" : "month", "value" : "August"}]}';
+    const r3 = '{"name": "payment"}';
+    const r4 = '{"name": "paymentdays", "parameters":[{"key" : "month", "value" : "August"}]}';
 
     const rqt1: Request = Object.assign(new Request(), JSON.parse(r1));
     const rqt2: Request = Object.assign(new Request(), JSON.parse(r2));
-    this.requests = Array.of(rqt1, rqt2);
+    const rqt3: Request = Object.assign(new Request(), JSON.parse(r3));
+    const rqt4: Request = Object.assign(new Request(), JSON.parse(r4));
+    this.requests = Array.of(rqt1, rqt2, rqt3, rqt4);
     return this.requests;
   }
 

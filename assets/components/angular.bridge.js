@@ -9,7 +9,7 @@ function extractparametersDefault(component, defaultValues) {
   var params = '{"name": "' + component.dataset.name + '","parameters": [';
   var oParam = new Array();
   for (index in defaultValues) {
-      oParam[oParam.length] = '{"name" : "' + defaultValues[i].key + '", "value" : "' + defaultValues[i].value + '"}';
+      oParam[oParam.length] = '{"name" : "' + defaultValues[index].key + '", "value" : "' + defaultValues[index].value + '"}';
   }
   params += oParam.join(",");
   params +=']}';
@@ -57,6 +57,10 @@ function initChtml(drag, request) {
     chart = new C3MultiBar('chart'+ drag.name, drag.name, [], new Dataset(drag.dataset, 'http://localhost:9090/datas'), [], []);
   } else if (drag.type === 'bar') {
     chart = new C3Bar('chart' + drag.name, drag.name, [], new Dataset(drag.dataset, 'http://localhost:9090/datas'), [], []);
+  } else if (drag.type === 'line') {
+    chart = new C3Line('chart' + drag.name, drag.name, [], new Dataset(drag.dataset, 'http://localhost:9090/datas'), [], []);
+  } else if (drag.type === 'donut') {
+    chart = new C3Donut('chart' + drag.name, drag.name, [], new Dataset(drag.dataset, 'http://localhost:9090/datas'), [], []);
   }
 
   if (chart != undefined) {
