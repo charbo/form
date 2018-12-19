@@ -6,11 +6,15 @@
         </div>
         <div class="row">
           <div class='col-6'>Dataset: </div>
-          <div class='col-6'><input type='text' name="{{ draggable.dataset}}" [(ngModel)]='draggable.dataset'/></div>
+          <div class='col-6'><request-component [draggable]="draggable"></request-component></div>
         </div>
         <div class="row">
           <div class='col-6'>Type: </div>
-          <div class='col-6'><input type='text' name="{{ draggable.type}}" [(ngModel)]='draggable.type'/></div>
+          <div class='col-6'><select [(ngModel)]="draggable.type">
+            <option *ngFor="let type of types">
+              {{ type }}
+            </option>
+          </select></div>
         </div>
         <div class="row">
             <div class='col-12' (click)="valider()">Valider</div>

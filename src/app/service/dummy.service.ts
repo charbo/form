@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Draggable } from '../model/draggable';
+import { Request } from '../model/request';
 
 
 @Injectable({ providedIn: 'root' })
 export class DummyService {
 
-
+  requests: Request[];
 
   constructor() { }
 
@@ -25,6 +26,20 @@ export class DummyService {
 
     const drag4: Draggable = Object.assign(new Draggable(), JSON.parse(d4));
     return Array.of(drag4);
+  }
+
+  getRequests(): Request[] {
+    const r1 = '{"name": "rental"}';
+    const r2 = '{"name": "category", "parameters":[{"key" : "month", "value" : "August"}]}';
+
+    const rqt1: Request = Object.assign(new Request(), JSON.parse(r1));
+    const rqt2: Request = Object.assign(new Request(), JSON.parse(r2));
+    this.requests = Array.of(rqt1, rqt2);
+    return this.requests;
+  }
+
+  getRequest(name: string): Request {
+    return this.requests.find(r => r.name === name);
   }
 
 

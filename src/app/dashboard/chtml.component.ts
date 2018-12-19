@@ -1,7 +1,8 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import { Draggable } from '../model/draggable';
+import { DummyService } from '../service/dummy.service';
 
-declare function initChtml(id: any, dataset: any, type: any): any;
+declare function initChtml(drag: any, request: any): any;
 
 @Component({
   selector: 'chtml-component',
@@ -12,15 +13,15 @@ declare function initChtml(id: any, dataset: any, type: any): any;
 export class CHtmlComponent implements AfterViewInit {
   private content: Draggable;
 
+  constructor(private dummyService: DummyService) { }
+
   ngAfterViewInit(): void {
-    initChtml(this.content.name, this.content.dataset, this.content.type);
+    initChtml(this.content, this.dummyService.getRequest(this.content.dataset));
   }
 
   @Input()
   set draggable(draggable: Draggable) {
     this.content = draggable;
-    console.log('got url: ', draggable);
-
   }
 
 }

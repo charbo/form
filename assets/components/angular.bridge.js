@@ -1,6 +1,5 @@
 var components = new Array();
 
-
 function callServerWithDefault(component, defaultValues) {
   var params = extractparametersDefault(component, defaultValues);
   call(component, params);
@@ -9,10 +8,8 @@ function callServerWithDefault(component, defaultValues) {
 function extractparametersDefault(component, defaultValues) {
   var params = '{"name": "' + component.dataset.name + '","parameters": [';
   var oParam = new Array();
-  for (index in component.parameters) {
-      var parameter = component.parameters[index];
-      var value = defaultValues[parameter.provider];
-      oParam[oParam.length] = '{"name" : "' + parameter.name + '", "value" : "' + value + '"}';
+  for (index in defaultValues) {
+      oParam[oParam.length] = '{"name" : "' + defaultValues[i].key + '", "value" : "' + defaultValues[i].value + '"}';
   }
   params += oParam.join(",");
   params +=']}';
@@ -21,16 +18,20 @@ function extractparametersDefault(component, defaultValues) {
   return params;
 };
 
-function initChtml(id, dataset, type) {
-  var chart;
-  var defaultValues = new Array();
 
-  if (type === 'multibar') {
-    chart = new C3MultiBar('chart'+ id, id, ['categoryclone'], new Dataset(dataset, 'http://localhost:9090/datas'), [], new Array());
-    components['chart'+ id] = chart;
-    const observablemulti = Rx.Observable.fromEvent($('#chart' + id), 'click');
-    observablemulti.subscribe(function (event) {
-      console.log("click on rx " + chart);
+function addToDashboard(drag) {
+  console.log(drag);
+}
+
+function setParent(child, filters) {
+  for (var i = 0; i < filters.length; i++) {
+    var parent = filters[i].value;
+    components['chart'+ parent].childs.push(child);
+    components['chart'+ child].parameters.push(new Parameter(filters[i].key, parent));
+
+    const observable = Rx.Observable.fromEvent($('#chart' + parent), 'click');
+    observable.subscribe(function (event) {
+      console.log("click on rx " + event.currentTarget.id);
       components[event.currentTarget.id].childs.forEach(function(name){console.log("call server for " + name); callServer(components['chart'+ name], event)});
      },
      function (err) {
@@ -39,15 +40,33 @@ function initChtml(id, dataset, type) {
      function () {
        console.log('Completed');
      });
+  }
+}
 
+function initChtml(drag, request) {
+  console.log('initChtml ' + drag.dataset);
+  var chart;
+  var defaultValues;
+  if (drag.filters !== undefined &&  drag.filters.length > 0) {
+    defaultValues = request.parameters;
+  } else {
+    defaultValues = new Array();
+  }
 
-  } else if (type === 'bar') {
-    chart = new C3Bar('chart' + id, id, [], new Dataset(dataset, 'http://localhost:9090/datas'), [new Parameter('month', 'multiclone')], new Array());
-    components['chart'+ id] = chart;
-    defaultValues['multiclone'] = 'June';
+  if (drag.type === 'multibar') {
+    chart = new C3MultiBar('chart'+ drag.name, drag.name, [], new Dataset(drag.dataset, 'http://localhost:9090/datas'), [], []);
+  } else if (drag.type === 'bar') {
+    chart = new C3Bar('chart' + drag.name, drag.name, [], new Dataset(drag.dataset, 'http://localhost:9090/datas'), [], []);
   }
 
   if (chart != undefined) {
     callServerWithDefault(chart, defaultValues);
   }
+  if (drag.attach) {
+    components['chart'+ drag.name] = chart;
+    if (drag.filters !== undefined &&  drag.filters.length > 0) {
+      setParent(drag.name, drag.filters);
+    }
+  }
+
 }

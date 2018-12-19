@@ -17,4 +17,8 @@ export class ChartService {
     return this.subject.asObservable();
   }
 
+  getAvailableTypes(): string[] {
+    return ['multibar', 'bar'];
+  }
+
 }

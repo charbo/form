@@ -12,9 +12,4 @@ export class DraggableComponent {
   @Input() draggable: Draggable;
 
   constructor() { }
-
-  getClass(): string {
-    return this.draggable.visibility;
-  }
-
 }

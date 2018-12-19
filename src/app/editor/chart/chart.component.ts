@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { ChartService } from '../../service/chart.service';
 import { Draggable } from '../../model/draggable';
 import { DraggableService } from '../../service/draggable.service';
-
+import { FormService } from '../../service/form.service';
 
 @Component({
   selector: 'chart-component',
@@ -15,11 +15,13 @@ export class ChartComponent implements OnDestroy {
   objectKeys = Object.keys;
   private subscription: Subscription;
   draggable: Draggable;
+  types: string[];
 
 
-  constructor(private chartService: ChartService, private draggableService: DraggableService) {
+  constructor(private chartService: ChartService, private draggableService: DraggableService, private formService: FormService) {
     this.subscription = this.chartService.getDraggable().subscribe(d => {this.draggable = d; });
     this.draggableService = draggableService;
+    this.types = this.chartService.getAvailableTypes();
   }
 
 

@@ -13,6 +13,7 @@ import { LineComponent } from './editor/line.component';
 import { CellComponent } from './editor/cell.component';
 import { EditorComponent } from './editor/properties/editor.component';
 import { ChartComponent } from './editor/chart/chart.component';
+import { RequestComponent } from './editor/chart/request.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     LineComponent,
     CellComponent,
     EditorComponent,
+    RequestComponent,
     ChartComponent
   ],
   imports: [

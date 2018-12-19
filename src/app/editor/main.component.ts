@@ -33,7 +33,8 @@ export class MainComponent {
             return source.id === 'left';
           },
           copyItem: (draggable: Draggable) => {
-            return draggable.clone();
+            const drag = draggable.clone();
+            return drag;
           },
           accepts: (el, target, source, sibling) => {
               // To avoid dragging from right to left container
@@ -55,19 +56,4 @@ export class MainComponent {
         this.chartService.addNewChart();
       }
 
-      displayComponent($event): void {
-        const draggableName = $event.target.attributes['data-id'].value;
-        const draggable = this.draggables.filter(d => d.name === draggableName && d.visibility === 'hidden');
-        if (draggable[0]) {
-          draggable[0].visibility = 'visible';
-        }
-      }
-
-      hideComponent($event): void {
-        const draggableName = $event.target.attributes['data-id'].value;
-        const draggable = this.draggables.filter(d => d.name === draggableName && d.visibility === 'visible');
-        if (draggable[0]) {
-          draggable[0].visibility = 'hidden';
-        }
-      }
 }
