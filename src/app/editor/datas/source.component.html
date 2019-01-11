@@ -1,5 +1,28 @@
-<div *ngIf="sources">
-    <div *ngFor="let source of sources">
-      {{ source.name }} - {{ source.url }}
-  </div>
+<div class="container">
+    <h1>Create new data source</h1>
+    <form (ngSubmit)="onSubmit()" #datasForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="source.name" name="name" required>
+      </div>
+      <div class="form-group">
+          <label for="driver">Driver</label>
+          <input type="text" class="form-control" id="driver" [(ngModel)]="source.driver" name="driver" required>
+        </div>
+      <div class="form-group">
+        <label for="url">Url</label>
+        <input type="text" class="form-control" id="url" [(ngModel)]="source.url" name="url" required>
+      </div>
+      <div class="form-group">
+          <label for="user">User</label>
+          <input type="text" class="form-control" id="user" [(ngModel)]="source.user" name="user" required>
+        </div>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="source.password" name="password" required>
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
 </div>

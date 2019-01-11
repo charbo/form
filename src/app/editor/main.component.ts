@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-import { DragulaService } from 'ng2-dragula';
 
-import { ChartService } from '../service/chart.service';
-import { DraggableService } from '../service/draggable.service';
-import { Draggable } from '../model/draggable';
-import { Form } from '../model/form';
-import { FormService } from '../service/form.service';
 
 @Component({
   selector: 'main',
@@ -15,45 +9,26 @@ import { FormService } from '../service/form.service';
 })
 
 export class MainComponent {
+  designerClass =  'invisible';
+  datasClass =  'invisible';
 
-  private formService: FormService;
-  private chartService: ChartService;
-  private draggableService: DraggableService;
-
-  draggables: Draggable[] = [];
-  form: Form;
-
-  constructor(dragulaService: DragulaService, formService: FormService, chartService: ChartService, draggableService: DraggableService) {
-        this.formService = formService;
-        this.chartService = chartService;
-        this.draggableService = draggableService;
-
-        dragulaService.createGroup('main-bag', {
-          copy: (el, source) => {
-            return source.id === 'left';
-          },
-          copyItem: (draggable: Draggable) => {
-            const drag = draggable.clone();
-            return drag;
-          },
-          accepts: (el, target, source, sibling) => {
-              // To avoid dragging from right to left container
-            return target.id !== 'left';
-          }
-        });
+  showDesigner(): void {
+    this.designerClass = 'visible';
+    this.datasClass = 'invisible';
+  }
 
 
-        this.draggables = this.draggableService.getDraggables();
-        this.form = this.formService.getForm();
-      }
+  showDatas(): void {
+    this.datasClass = 'visible';
+    this.designerClass = 'invisible';
+  }
+
+  getDesignerClass(): string {
+    return this.designerClass;
+  }
 
 
-      addLine(): void {
-        this.formService.addLine();
-      }
-
-      createChart(): void {
-        this.chartService.addNewChart();
-      }
-
+  getDatasClass(): string {
+    return this.datasClass;
+  }
 }

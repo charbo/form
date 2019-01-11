@@ -1,45 +1,13 @@
-<div class="container-fluid" style="border:1px solid yellow;">
-  <div class="row flex-xl-nowrap">
-    <div class="col-4 col-md col-xl-3">
-      <div (click)="createChart()">Créer chart</div>
-    </div>
-    <div class="col-8 col-md-4 col-xl-4">
-        <div (click)="addLine()">ajout ligne</div>
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#">Home</a>
+      <a class="nav-item nav-link" href="#" (click)="showDatas()">Datas</a>
+      <a class="nav-item nav-link" href="#" (click)="showDesigner()">Designer</a>
     </div>
   </div>
-  <div class="row flex-xl-nowrap">
-    <div class="col-12 col-md col-xl-3">
-      <div class='col' [dragula]='"main-bag"' id="left" *ngIf="draggables" [(dragulaModel)]="draggables">
-        <draggable-component *ngFor="let draggable of draggables"
-          [draggable]="draggable"
-          [attr.data-id]="draggable.name">
-        </draggable-component>
-      </div>
-    </div>
+</nav>
+<designer-component [ngClass]="getDesignerClass()"></designer-component>
+<datas-component [ngClass]="getDatasClass()"><</datas-component>
 
-    <div class="col-12 col-md-9 col-xl-9">
-      <div class='container-fluid'>
-        <div class='row'>
-          <div class='col'>
-            <div class="container-fluid">
-              <line-component *ngFor="let line of form.lines" [line]="line" [attr.data-id]="line.index"></line-component>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row flex-xl-nowrap">
-    <div class="col-12">
-      <editor-component></editor-component>
-    </div>
-  </div>
-  <div class="row flex-xl-nowrap">
-    <div class="col-12">
-      <chart-component></chart-component>
-    </div>
-  </div>
-  <div>
-      <source-component></source-component>
-  </div>
-</div>
+

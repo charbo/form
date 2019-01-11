@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SourceService } from '../../service/source.service';
-import { Values } from '../../model/values';
-import { Source } from '../../model/design/source';
+import { SourceService } from '../../ws/source.service';
+import { Source } from '../../model/datas/source';
 
 
 @Component({
@@ -12,14 +11,17 @@ import { Source } from '../../model/design/source';
 })
 
 export class SourceComponent  {
-
-  sources: Source[];
-
+  submitted = false;
+  source = new Source();
 
   constructor(private sourceService: SourceService) {
-    this.sourceService.getSources().subscribe(sources => this.sources = sources);
+    this.sourceService = sourceService;
   }
 
+  onSubmit() {
+    this.submitted = true;
+    this.sourceService.saveSource(this.source).subscribe(source => this.source = source);
+  }
 
 }
 

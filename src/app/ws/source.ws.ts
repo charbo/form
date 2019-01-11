@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Source } from '../model/design/source';
+import { Source } from '../model/datas/source';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,16 +13,23 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class SourceService {
 
-  private sourceUrl = 'http://localhost:9191/sources';  // URL to web api
+  private sourceUrl = 'http://localhost:9191/source';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
-  getSources (): Observable<Source[]> {
+  getSources(): Observable<Source[]> {
     return this.http.get<Source[]>(this.sourceUrl)
       .pipe(
-        tap(source => this.log('fetched sources')),
+        tap(sources => this.log('fetched sources')),
         catchError(this.handleError('getSources', []))
       );
+  }
+
+  saveSource(source: Source): Observable<Source> {
+    return this.http.post<Source>(this.sourceUrl, source, httpOptions).pipe(
+      tap(s => this.log('save source')),
+      catchError(this.handleError('getSources', source))
+    );
   }
 
    /**

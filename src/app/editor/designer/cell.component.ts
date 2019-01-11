@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { Cell } from '../model/cell';
+import { Cell } from '../../model/cell';
 
-import { PropertiesService } from '../service/properties.service';
+import { PropertiesService } from '../../service/properties.service';
 
 
 @Component({

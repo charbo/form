@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Draggable } from '../model/draggable';
+import { Draggable } from '../../model/draggable';
 
 @Component({
   selector: 'draggable-component',

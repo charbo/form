@@ -1,3 +1,11 @@
 .drop-row {
   height: 75px;
 }
+
+.visible {
+  display: block;
+}
+
+.invisible {
+  display: none;
+}
