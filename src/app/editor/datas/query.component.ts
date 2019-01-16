@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { SourceService } from '../../service/source.service';
+import { SourceService } from '../../ws/source.ws';
 import { Query } from '../../model/datas/query';
+import { QueryService } from '../../ws/query.ws';
 
 
 @Component({
@@ -13,9 +13,21 @@ import { Query } from '../../model/datas/query';
 export class QueryComponent  {
   submitted = false;
   query = new Query();
+  sources: string[];
 
-  constructor(private sourceService: SourceService) {
+  constructor(private sourceService: SourceService, private queryService: QueryService) {
     this.sourceService = sourceService;
+    this.sourceService.getSources().subscribe(sources => this.sources = sources.map(s => s.name));
+  }
+
+  addSerie(): void {
+    const num = this.query.series.length + 1;
+    this.query.series.push('Serie' + num);
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    this.queryService.saveQuery(this.query).subscribe();
   }
 
 }

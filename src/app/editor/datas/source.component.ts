@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SourceService } from '../../ws/source.service';
+import { SourceService } from '../../ws/source.ws';
 import { Source } from '../../model/datas/source';
 
 
