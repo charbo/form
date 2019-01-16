@@ -17,8 +17,9 @@
       </div>
       <div class="form-group">
           <label>Series</label>
-          <div *ngFor="let serie of query.series; let index = index" class="row">
-              <input type='text' [name]="serie" [(ngModel)]="query.series[index]"/>
+          <div *ngFor="let param of query.parameters; let index = index" class="row">
+              <input type='text' [name]="param.key" [(ngModel)]="query.parameters[index].key"/>
+              <input type='text' [name]="param.value" [(ngModel)]="query.parameters[index].value"/>
           </div>
           <div class="col-xl-1" (click)="addSerie()">ajout serie</div>
       </div>

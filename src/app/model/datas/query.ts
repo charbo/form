@@ -1,6 +1,7 @@
+import { Parameter } from './parameter';
 export class Query {
   name: string;
   sql: string;
-  series = new Array();
+  parameters: Parameter[] = new Array();
   source: string;
 }

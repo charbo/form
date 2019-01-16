@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SourceService } from '../../ws/source.ws';
 import { Query } from '../../model/datas/query';
 import { QueryService } from '../../ws/query.ws';
+import { Parameter } from '../../model/datas/parameter';
 
 
 @Component({
@@ -21,8 +22,11 @@ export class QueryComponent  {
   }
 
   addSerie(): void {
-    const num = this.query.series.length + 1;
-    this.query.series.push('Serie' + num);
+    const num = this.query.parameters.length + 1;
+    const param = new Parameter();
+    param.key = 'param' + num;
+    param.value = 'value';
+    this.query.parameters.push(param);
   }
 
   onSubmit() {
