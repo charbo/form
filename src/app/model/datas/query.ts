@@ -4,4 +4,5 @@ export class Query {
   sql: string;
   parameters: Parameter[] = new Array();
   source: string;
+  multi: boolean;
 }

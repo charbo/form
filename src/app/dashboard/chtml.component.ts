@@ -1,6 +1,7 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import { Draggable } from '../model/draggable';
-import { DummyService } from '../service/dummy.service';
+import { RequestService } from '../service/request.service';
+
 
 declare function initChtml(drag: any, request: any): any;
 
@@ -13,10 +14,10 @@ declare function initChtml(drag: any, request: any): any;
 export class CHtmlComponent implements AfterViewInit {
   private content: Draggable;
 
-  constructor(private dummyService: DummyService) { }
+  constructor(private requestService: RequestService) { }
 
   ngAfterViewInit(): void {
-    initChtml(this.content, this.dummyService.getRequest(this.content.dataset));
+    initChtml(this.content, this.requestService.getRequest(this.content.dataset));
   }
 
   @Input()
