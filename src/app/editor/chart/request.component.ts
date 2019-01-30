@@ -22,18 +22,20 @@ export class RequestComponent implements OnDestroy {
   parameters: string[];
   items: string[];
 
-  constructor(private requestService: RequestService, private formService: FormService, private resourceService: ResourcesService) {
-    this.resourceService.getQueries()
-    .subscribe(queries => {this.requests = this.toRequests(queries); console.log('-- *****' + this.requests + '-'); });
+  constructor(private formService: FormService, private resourceService: ResourcesService, private requestService: RequestService) {
+    this.resourceService.getQueries().subscribe(
+      queries => {
+        this.requests = this.toRequests(queries);
+        this.requestService.setRequests(this.requests);
+      });
   }
 
-  // TODO get request by name
   onRequestSelect(name: string): void {
-    this.extractParameters(this.requestService.getRequests());
+    this.extractParameters(this.requests === undefined ? new Request() : this.requests.find(r => r.name === name));
   }
 
-  private extractParameters(req: Request[]): void {
-    this.parameters = req.find(r => r.name === name).parameters.map(p => p.key);
+  private extractParameters(req: Request): void {
+    this.parameters = req.parameters.map(p => p.key);
     if (this.parameters) {
       this.draggable.filters = new Array();
       this.parameters.forEach(p => {const prop = new Propertie(); prop.key = p; this.draggable.filters.push(prop); });
