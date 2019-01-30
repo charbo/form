@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { SourceService } from '../../ws/source.ws';
+import { SourcesService } from './../../service/sources.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Query } from '../../model/datas/query';
 import { QueryService } from '../../ws/query.ws';
 import { Parameter } from '../../model/datas/parameter';
+import { ResourcesService } from '../../service/resources.service';
 
 
 @Component({
@@ -11,15 +12,19 @@ import { Parameter } from '../../model/datas/parameter';
   styleUrls: ['./query.component.css']
 })
 
-export class QueryComponent  {
+export class QueryComponent implements OnInit {
   submitted = false;
   query = new Query();
-  sources: string[];
+  sources = new Array();
 
-  constructor(private sourceService: SourceService, private queryService: QueryService) {
-    this.sourceService = sourceService;
-    this.sourceService.getSources().subscribe(sources => this.sources = sources.map(s => s.name));
+  constructor(private sourcesService: SourcesService, private queryService: QueryService, private resourceService: ResourcesService) {
   }
+
+
+  ngOnInit(): void {
+    this.sources = this.sourcesService.getSource().map(s => s.name);
+  }
+
 
   addSerie(): void {
     const num = this.query.parameters.length + 1;
@@ -31,7 +36,7 @@ export class QueryComponent  {
 
   onSubmit() {
     this.submitted = true;
-    this.queryService.saveQuery(this.query).subscribe();
+    this.queryService.saveQuery(this.query).subscribe(() =>  this.resourceService.addQuery(this.query));
   }
 
 }

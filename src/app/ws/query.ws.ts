@@ -1,3 +1,4 @@
+import { ResourcesService } from './../service/resources.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -20,14 +21,14 @@ export class QueryService {
   getQueries(): Observable<Query[]> {
     return this.http.get<Query[]>(this.queryUrl)
       .pipe(
-        tap(sources => this.log('fetched sources')),
+        tap(queries => this.log('fetched queries')),
         catchError(this.handleError('getSources', []))
       );
   }
 
   saveQuery(query: Query): Observable<Query> {
     return this.http.post<Query>(this.queryUrl, query, httpOptions).pipe(
-      tap(s => this.log('save source')),
+      tap(s => this.log('save query')),
       catchError(this.handleError('save query', query))
     );
   }

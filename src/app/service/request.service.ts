@@ -1,22 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Request } from '../model/request';
 import { QueryService } from '../ws/query.ws';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Query } from '../model/datas/query';
-import { map } from 'rxjs/operators';
 import { Propertie } from '../model/propertie';
+import { ResourcesService } from './resources.service';
 
 
 
 @Injectable({ providedIn: 'root' })
-export class RequestService {
-
+export class RequestService implements OnDestroy {
+  private subscription: Subscription;
   requests: Request[];
 
-  constructor(private queryService: QueryService) { }
+  constructor(private resourceService: ResourcesService) {
+    // tslint:disable-next-line:max-line-length
+    this.subscription = this.resourceService.getQueries().subscribe(queries => {this.requests = this.toRequests(queries); console.log('-- *****'); });
+  }
 
-  getRequests(): Observable<Request[]> {
-    return this.queryService.getQueries().pipe(map(queries => this.requests = this.toRequests(queries)));
+  ngOnDestroy(): void {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
+
+  getRequests(): Request[] {
+    return this.requests;
   }
 
   toRequests(queries: Query[]): Request[] {
@@ -33,7 +41,7 @@ export class RequestService {
   }
 
   getRequest(name: string): Request {
-    return this.requests.find(r => r.name === name);
+    return this.requests === undefined ? new Request() : this.requests.find(r => r.name === name);
   }
 
 

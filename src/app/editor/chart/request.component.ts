@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Query } from './../../model/datas/query';
+import { ResourcesService } from './../../service/resources.service';
+import { Subscription } from 'rxjs';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Request } from '../../model/request';
 import { Draggable } from '../../model/draggable';
 import { FormService } from '../../service/form.service';
@@ -11,20 +14,22 @@ import { RequestService } from '../../service/request.service';
   styleUrls: ['./request.component.css']
 })
 
-export class RequestComponent {
+export class RequestComponent implements OnDestroy {
+  private subscription: Subscription;
   @Input() draggable: Draggable;
 
   requests: Request[];
   parameters: string[];
   items: string[];
 
-  constructor(private requestService: RequestService, private formService: FormService) {
-    this.requestService.getRequests().subscribe(requests => this.requests = requests);
+  constructor(private requestService: RequestService, private formService: FormService, private resourceService: ResourcesService) {
+    this.resourceService.getQueries()
+    .subscribe(queries => {this.requests = this.toRequests(queries); console.log('-- *****' + this.requests + '-'); });
   }
 
   // TODO get request by name
   onRequestSelect(name: string): void {
-    this.requestService.getRequests().subscribe(req => this.extractParameters(req));
+    this.extractParameters(this.requestService.getRequests());
   }
 
   private extractParameters(req: Request[]): void {
@@ -34,6 +39,24 @@ export class RequestComponent {
       this.parameters.forEach(p => {const prop = new Propertie(); prop.key = p; this.draggable.filters.push(prop); });
     }
     this.items = this.formService.getAvailableParents();
+  }
+
+  ngOnDestroy(): void {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
+
+  toRequests(queries: Query[]): Request[] {
+    const res = new Array();
+    queries.forEach(q => {
+      const r = new Request();
+      r.name = q.name;
+      r.parameters = new Array();
+      q.parameters.forEach(p => {const prop = new Propertie(); prop.key = p.key; prop.value = p.value; r.parameters.push(prop); });
+      res.push(r);
+    });
+
+    return res;
   }
 
 }
